@@ -26,9 +26,10 @@ This project was created as a peaceful digital space for emotional relaxation an
 
  https://roumaissa05.github.io/your-sacred-space/
 
-## 📸 Preview
+## Preview
 
-!(images/preview.jpg)
+![Website Preview](images/preview.jpg)
+
 
 ## 👩‍💻 Author
 
