@@ -1,4 +1,4 @@
-# 🕊️ Your Sacred Space | مساحتكِ المقدسة
+# 🕊️ Your Sacred Space | مساحتكِ االامنة
 
 A calming bilingual self-care web experience designed to provide emotional comfort, breathing exercises, affirmations, and peaceful interactions.
 
