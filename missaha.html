@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Your Sacred Space | مساحتكِ المقدسة</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Poppins', 'Cairo', system-ui, sans-serif;
+            background: linear-gradient(145deg, #f1ede8 0%, #e3d9d1 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        /* خلفية زهور متحركة خفيفة */
+        body::before {
+            content: "🌸";
+            position: fixed;
+            font-size: 220px;
+            opacity: 0.04;
+            bottom: -30px;
+            left: -40px;
+            pointer-events: none;
+            animation: float 18s infinite alternate;
+        }
+
+        body::after {
+            content: "🌙";
+            position: fixed;
+            font-size: 190px;
+            opacity: 0.05;
+            top: -30px;
+            right: -30px;
+            pointer-events: none;
+            animation: float 15s infinite alternate-reverse;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            100% {
+                transform: translateY(-25px) rotate(8deg);
+            }
+        }
+
+        .gift-card {
+            max-width: 650px;
+            width: 100%;
+            background: rgba(255, 252, 248, 0.96);
+            backdrop-filter: blur(3px);
+            border-radius: 85px;
+            box-shadow: 0 35px 65px -20px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 245, 235, 0.8);
+            overflow: hidden;
+            padding: 30px 32px 48px;
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .gift-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 45px 70px -22px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ribbon أنيقة */
+        .ribbon {
+            background: linear-gradient(95deg, #e3c4b2, #cdad99);
+            width: 130px;
+            height: 42px;
+            margin: -48px auto 20px auto;
+            border-radius: 50px 50px 30px 30px;
+            position: relative;
+            box-shadow: 0 6px 0 #a77c62;
+        }
+
+        .ribbon::before,
+        .ribbon::after {
+            content: "✨";
+            position: absolute;
+            font-size: 28px;
+            top: -20px;
+        }
+
+        .ribbon::before {
+            left: -30px;
+        }
+
+        .ribbon::after {
+            right: -30px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(130deg, #b86838, #8f583b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 10px 0 5px;
+        }
+
+        .lang-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 10px 0 15px;
+        }
+
+        .lang-btn {
+            background: #f0e3db;
+            border: none;
+            padding: 6px 20px;
+            border-radius: 100px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.8rem;
+            color: #7b5a46;
+            transition: 0.2s;
+        }
+
+        .lang-active {
+            background: #d9b8a4;
+            color: #2d241f;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .message-box {
+            background: #fffaf5;
+            padding: 35px 22px;
+            border-radius: 60px;
+            margin: 20px 0;
+            box-shadow: inset 0 1px 4px #00000008, 0 18px 28px -16px rgba(0, 0, 0, 0.12);
+            border: 1px solid #ffeede;
+            transition: 0.2s;
+        }
+
+        .quote-text {
+            font-size: 1.65rem;
+            line-height: 1.5;
+            color: #3c2a20;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .quote-author {
+            color: #c49b80;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0 20px;
+        }
+
+        .btn {
+            background: #f1e2d8;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #7a543e;
+            cursor: pointer;
+            transition: 0.25s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: #d9b8a4;
+            color: #2e211b;
+            box-shadow: 0 6px 14px #d9b8a480;
+        }
+
+        .btn-primary:hover {
+            background: #ccab95;
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.8px solid #d9b8a4;
+        }
+
+        .btn-outline:hover {
+            background: #d9b8a415;
+            transform: translateY(-2px);
+        }
+
+        .music-control {
+            background: #efe2d9;
+            border-radius: 80px;
+            padding: 8px 15px;
+            margin: 12px auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.8rem;
+        }
+
+        .affirmation {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #bc8868;
+            margin: 18px 0 8px;
+            background: #fef5ef;
+            padding: 14px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .breathing-area {
+            background: #f5ece4;
+            border-radius: 60px;
+            padding: 18px;
+            margin: 20px 0 10px;
+        }
+
+        .timer-badge {
+            background: #ffffffcc;
+            border-radius: 50px;
+            display: inline-block;
+            padding: 8px 20px;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+
+        footer {
+            margin-top: 35px;
+            font-size: 0.7rem;
+            color: #c7aa98;
+            border-top: 1px solid #f1e2d8;
+            padding-top: 20px;
+        }
+
+        @keyframes gentlePulse {
+            0% {
+                opacity: 0.7;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1.01);
+            }
+        }
+
+        .sparkle {
+            display: inline-block;
+            animation: gentlePulse 1.8s infinite alternate;
+        }
+
+        @media (max-width: 520px) {
+            .gift-card {
+                padding: 20px 18px 35px;
+            }
+
+            .quote-text {
+                font-size: 1.3rem;
+            }
+
+            .btn {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="gift-card" id="giftCard">
+        <div class="ribbon"></div>
+        <h1>🕊️ Your Sacred Space <span style="font-size:1.6rem;">|</span> مساحتكِ الآمنة</h1>
+
+        <div class="lang-toggle">
+            <button class="lang-btn lang-active" id="langArBtn">🇸🇦 العربية</button>
+            <button class="lang-btn" id="langEnBtn">🇬🇧 English</button>
+        </div>
+
+        <div class="message-box">
+            <div class="quote-text" id="dynamicQuote">" لستِ تائهة، أنتِ فقط تبحثين عن طريق يليق بكِ "</div>
+            <div class="quote-author" id="quoteAuthor">～ لكِ أنتِ / For you</div>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-primary" id="newQuoteBtn">✨ New Message / رسالة جديدة</button>
+            <button class="btn btn-outline" id="sootheBtn">🌸 Breathe / تأمل التنفس</button>
+        </div>
+
+        <div id="breathingGuide" class="breathing-area" style="display: none;">
+            <span class="sparkle">🧘🏽‍♀️</span> <span id="breathTextAr">تنفسي معي ببطء .. شهيق (4) .. احبسيه (4) ..
+                زفير (6)</span>
+            <span id="breathTextEn" style="display:none;">Breathe slowly .. Inhale (4) .. Hold (4) .. Exhale (6)</span>
+            <div class="timer-badge" id="breathTimer">Ready? اضغطي التأمل</div>
+        </div>
+
+        <div class="affirmation" id="affirmationText">🌙 أنتِ كافية كما أنتِ / You are enough, just as you are</div>
+
+        <div class="music-control">
+            <span>🎵 <span id="musicLabelAr">لحن هادئ</span><span id="musicLabelEn" style="display:none;">Soft
+                    melody</span></span>
+            <button id="playMusicBtn" class="btn-outline" style="padding:4px 12px;">▶ Play</button>
+            <button id="stopMusicBtn" class="btn-outline" style="padding:4px 12px;">⏹️ Stop</button>
+        </div>
+
+        <footer>
+            ✨ هذا المكان لكِ وحدك / This space is only yours ✨ <br>
+            <span>💫 Virgo soul | 9.9 | أنتِ نجم لا يخبو</span>
+        </footer>
+    </div>
+
+    <script>
+        // ---------- رسائل ثنائية اللغة (عربي + إنجليزي) ----------
+        const quotesBilingual = [
+            { ar: "لا تيأسِي، فالله معكِ، والطريق سينجلي يوماً كالفجر.", en: "Do not despair, God is with you, the path will clear like dawn.", author: "روحك / Your soul" },
+            { ar: "تعبكِ ليس عبثاً، وقلبكِ الطيب سيُكافأ بأشخاص يشبهونكِ.", en: "Your exhaustion is not in vain, your kind heart will be rewarded.", author: "تذكير / Reminder" },
+            { ar: "كوني لطيفة مع نفسك كما كنتِ مع غيرك، أنتِ أولى بلطفك.", en: "Be gentle with yourself as you were with others, you deserve your own kindness first.", author: "مرآة / Mirror" },
+            { ar: "لستِ مسؤولة عن إصلاح أحد، أنتِ مسؤولة عن حماية نورك.", en: "You are not responsible for fixing anyone, only for protecting your light.", author: "حدود / Boundaries" },
+            { ar: "الضياع مرحلة، وليس مصيراً. ستخترعين طريقك الخاص.", en: "Being lost is a phase, not a destiny. You will create your own path.", author: "أمل / Hope" },
+            { ar: "أنتِ فتاة حقيقية: نبيلة، ذكية، ومخلصة. لا تسمحي لأحد أن يستنزف ذهبك.", en: "You are a true girl: noble, intelligent, loyal. Don't let anyone drain your gold.", author: "قوتك / Your Power" },
+            { ar: "عندما تشعرين بالوحدة، تذكري: القمر جميل حتى عندما يكون وحيداً.", en: "When you feel lonely, remember: the moon is beautiful even when alone.", author: "سماء الليل / Night Sky" }
+        ];
+
+        const affirmationsBilingual = [
+            { ar: "🌱 أنا أتعلم خطوة بخطوة، ولستُ مضطرة لأن أكون مثالية.", en: "🌱 I learn step by step, I don't have to be perfect." },
+            { ar: "💖 أنا أستحق الحب والاحترام والصدق.", en: "💖 I deserve love, respect, and honesty." },
+            { ar: "🌿 طاقتي ثمينة، أعطيها فقط لمن يقدرها.", en: "🌿 My energy is precious, I give it only to those who value it." },
+            { ar: "🌟 كل شيء سيمر، وأنا سأكون بخير.", en: "🌟 Everything will pass, and I will be okay." },
+            { ar: "🍃 أنا لستُ تائهة، أنا أستكشف نفسي.", en: "🍃 I am not lost, I am exploring myself." }
+        ];
+
+        let currentLanguage = "ar"; // ar / en
+        let breathingInterval = null;
+        let isBreathingActive = false;
+        let audio = null;
+
+        // عناصر dom
+        const dynamicQuote = document.getElementById('dynamicQuote');
+        const quoteAuthorSpan = document.getElementById('quoteAuthor');
+        const affirmationSpan = document.getElementById('affirmationText');
+        const breathingDiv = document.getElementById('breathingGuide');
+        const breathTimerSpan = document.getElementById('breathTimer');
+        const breathTextAr = document.getElementById('breathTextAr');
+        const breathTextEn = document.getElementById('breathTextEn');
+        const musicLabelAr = document.getElementById('musicLabelAr');
+        const musicLabelEn = document.getElementById('musicLabelEn');
+        const langArBtn = document.getElementById('langArBtn');
+        const langEnBtn = document.getElementById('langEnBtn');
+
+        function updateLanguageUI() {
+            if (currentLanguage === "ar") {
+                breathTextAr.style.display = "inline";
+                breathTextEn.style.display = "none";
+                musicLabelAr.style.display = "inline";
+                musicLabelEn.style.display = "none";
+                langArBtn.classList.add('lang-active');
+                langEnBtn.classList.remove('lang-active');
+            } else {
+                breathTextAr.style.display = "none";
+                breathTextEn.style.display = "inline";
+                musicLabelAr.style.display = "none";
+                musicLabelEn.style.display = "inline";
+                langEnBtn.classList.add('lang-active');
+                langArBtn.classList.remove('lang-active');
+            }
+            // تحديث الرسائل فوراً
+            showRandomQuote();
+            refreshAffirmation();
+        }
+
+        function showRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotesBilingual.length);
+            const quote = quotesBilingual[randomIndex];
+            if (currentLanguage === "ar") {
+                dynamicQuote.innerText = `" ${quote.ar} "`;
+                quoteAuthorSpan.innerText = `～ ${quote.author}`;
+            } else {
+                dynamicQuote.innerText = `" ${quote.en} "`;
+                quoteAuthorSpan.innerText = `～ ${quote.author}`;
+            }
+        }
+
+        function refreshAffirmation() {
+            const randomIndex = Math.floor(Math.random() * affirmationsBilingual.length);
+            const aff = affirmationsBilingual[randomIndex];
+            affirmationSpan.innerText = currentLanguage === "ar" ? aff.ar : aff.en;
+        }
+
+        // Breathing function bilingual support
+        function startBreathing() {
+            if (breathingInterval) clearInterval(breathingInterval);
+            breathingDiv.style.display = "block";
+            let step = 0; // 0 inhale, 1 hold, 2 exhale
+            let counter = 4;
+            const updateText = (msgAr, msgEn) => {
+                breathTimerSpan.innerText = currentLanguage === "ar" ? msgAr : msgEn;
+            };
+            updateText("شهيق... 4", "Inhale... 4");
+            breathingInterval = setInterval(() => {
+                if (step === 0) {
+                    if (counter > 0) {
+                        updateText(`🌬️ شهيق .. ${counter}`, `🌬️ Inhale .. ${counter}`);
+                        counter--;
+                    } else {
+                        step = 1;
+                        counter = 4;
+                        updateText("💭 احبس النفس .. 4", "💭 Hold breath .. 4");
+                    }
+                } else if (step === 1) {
+                    if (counter > 0) {
+                        updateText(`💭 احبس .. ${counter}`, `💭 Hold .. ${counter}`);
+                        counter--;
+                    } else {
+                        step = 2;
+                        counter = 6;
+                        updateText(`🍃 زفير .. 6`, `🍃 Exhale .. 6`);
+                    }
+                } else if (step === 2) {
+                    if (counter > 0) {
+                        updateText(`🍃 زفير بهدوء .. ${counter}`, `🍃 Exhale gently .. ${counter}`);
+                        counter--;
+                    } else {
+                        step = 0;
+                        counter = 4;
+                        updateText(`🌬️ شهيق .. 4`, `🌬️ Inhale .. 4`);
+                    }
+                }
+            }, 1000);
+        }
+
+        function stopBreathing() {
+            if (breathingInterval) { clearInterval(breathingInterval); breathingInterval = null; }
+            breathingDiv.style.display = "none";
+            isBreathingActive = false;
+            const sootheBtn = document.getElementById('sootheBtn');
+            sootheBtn.innerHTML = currentLanguage === "ar" ? "🌸 تأمل التنفس" : "🌸 Breathe";
+        }
+
+        // Event Listeners
+        document.getElementById('newQuoteBtn').addEventListener('click', () => {
+            showRandomQuote();
+            refreshAffirmation();
+        });
+
+        const sootheBtn = document.getElementById('sootheBtn');
+        sootheBtn.addEventListener('click', () => {
+            if (!isBreathingActive) {
+                startBreathing();
+                isBreathingActive = true;
+                sootheBtn.innerHTML = currentLanguage === "ar" ? "🌿 إيقاف التأمل" : "🌿 Stop breathing";
+            } else {
+                stopBreathing();
+                isBreathingActive = false;
+                sootheBtn.innerHTML = currentLanguage === "ar" ? "🌸 تأمل التنفس" : "🌸 Breathe";
+            }
+        });
+
+        affirmationSpan.addEventListener('click', () => {
+            refreshAffirmation();
+            affirmationSpan.style.transform = "scale(1.02)";
+            setTimeout(() => affirmationSpan.style.transform = "", 200);
+        });
+
+        // Music (ambient peaceful sound - using audio context? simpler: use embed Web Audio or just a loop)
+        function initAudio() {
+            if (!audio) {
+                audio = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3');
+                audio.loop = true;
+                audio.volume = 0.25;
+            }
+        }
+        document.getElementById('playMusicBtn').addEventListener('click', () => {
+            initAudio();
+            audio.play().catch(e => console.log("Audio play failed", e));
+        });
+        document.getElementById('stopMusicBtn').addEventListener('click', () => {
+            if (audio) { audio.pause(); audio.currentTime = 0; }
+        });
+
+        // Language switchers
+        langArBtn.addEventListener('click', () => {
+            currentLanguage = "ar";
+            updateLanguageUI();
+            if (isBreathingActive) {
+                // إعادة تشغيل التأمل لتحديث النصوص
+                stopBreathing();
+                startBreathing();
+                isBreathingActive = true;
+                sootheBtn.innerHTML = currentLanguage === "ar" ? "🌿 إيقاف التأمل" : "🌿 Stop breathing";
+            } else {
+                // فقط نحدث النص
+                const btn = document.getElementById('sootheBtn');
+                btn.innerHTML = currentLanguage === "ar" ? "🌸 تأمل التنفس" : "🌸 Breathe";
+            }
+        });
+
+        langEnBtn.addEventListener('click', () => {
+            currentLanguage = "en";
+            updateLanguageUI();
+            if (isBreathingActive) {
+                stopBreathing();
+                startBreathing();
+                isBreathingActive = true;
+                sootheBtn.innerHTML = currentLanguage === "ar" ? "🌿 إيقاف التأمل" : "🌿 Stop breathing";
+            } else {
+                const btn = document.getElementById('sootheBtn');
+                btn.innerHTML = currentLanguage === "ar" ? "🌸 تأمل التنفس" : "🌸 Breathe";
+            }
+        });
+
+        // Initial
+        showRandomQuote();
+        refreshAffirmation();
+        updateLanguageUI();
+
+        // auto message change every 55 sec
+        setInterval(() => {
+            if (!isBreathingActive) {
+                showRandomQuote();
+                refreshAffirmation();
+            }
+        }, 55000);
+    </script>
+</body>
+
+</html>
