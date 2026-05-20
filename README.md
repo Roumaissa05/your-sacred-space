@@ -28,7 +28,7 @@ Add your GitHub Pages link here.
 
 ## 📸 Preview
 
-(images/preview.jpg)
+!(images/preview.jpg)
 
 ## 👩‍💻 Author
 
